@@ -1,0 +1,20 @@
+/*
+ROT Developers and Contributors:
+Moises (OWNER/CEO), 
+TRASH (DEVELOPER),
+notbeer (ROT's base code)
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+__________ ___________________
+\______   \\_____  \__    ___/
+ |       _/ /   |   \|    |   
+ |    |   \/    |    \    |   
+ |____|_  /\_______  /____|   
+        \/         \/         
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+© Copyright 2022 all rights reserved by Moisesgamingtv9. Do NOT steal, copy the code, or claim it as yours!
+Please message moisesgamingtv9#8583 on Discord, or join the ROT discord: https://discord.com/invite/2ADBWfcC6S
+Website: https://www.rotmc.ml
+Docs: https://docs.google.com/document/d/1hasFU7_6VOBfjXrQ7BE_mTzwacOQs5HC21MJNaraVgg
+Thank you
+*/
+{"format_version":"1.10.0","minecraft:entity":{"description":{"identifier":"rot:knockback","is_spawnable":false,"is_summonable":true,"is_experimental":false,"runtime_identifier":"rot:knockback"},"components":{"minecraft:damage_sensor":[{"cause":"all","deals_damage":false}],"minecraft:type_family":{"family":["arm"]},"minecraft:collision_box":{"width":0.25,"height":0.25},"minecraft:scale":{"value":0},"minecraft:explode":{"fuseLength":0.1,"fuseLit":true,"power":0,"fireAffectedByGriefing":true,"destroyAffectedByGriefing":true,"breaks_blocks":false},"minecraft:behavior.knockback_roar":{"priority":1,"duration":0.1,"attack_time":0.1,"knockback_damage":0,"knockback_strength":5,"knockback_range":8}},"minecraft:pushable":{"is_pushable":false,"is_pushable_by_piston":true},"minecraft:physics":{"has_gravity":false,"has_collision":false}}}

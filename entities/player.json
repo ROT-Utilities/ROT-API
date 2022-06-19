@@ -1,0 +1,668 @@
+/*
+ROT Developers and Contributors:
+Moises (OWNER/CEO), 
+TRASH (DEVELOPER),
+notbeer (ROT's base code)
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+__________ ___________________
+\______   \\_____  \__    ___/
+ |       _/ /   |   \|    |   
+ |    |   \/    |    \    |   
+ |____|_  /\_______  /____|   
+        \/         \/         
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+© Copyright 2022 all rights reserved by Moisesgamingtv9. Do NOT steal, copy the code, or claim it as yours!
+Please message moisesgamingtv9#8583 on Discord, or join the ROT discord: https://discord.com/invite/2ADBWfcC6S
+Website: https://www.rotmc.ml
+Docs: https://docs.google.com/document/d/1hasFU7_6VOBfjXrQ7BE_mTzwacOQs5HC21MJNaraVgg
+Thank you
+*/
+{
+        "format_version": "1.17.0",
+        "minecraft:entity": {
+                "description": {
+                        "identifier": "minecraft:player",
+                        "is_spawnable": false,
+                        "is_summonable": false,
+                        "is_experimental": false,
+                        "scripts": {
+                                "animate": [
+                                        "death",
+                                        "can",
+                                        "is_moving",
+                                        "is_moving2",
+                                        "is_alive",
+                                        "is_breathing",
+                                        "is_eating",
+                                        "is_first_person",
+                                        "is_gliding",
+                                        "is_in_water",
+                                        "is_invisible",
+                                        "is_jumping",
+                                        "is_on_ground",
+                                        "is_on_fire",
+                                        "is_riding",
+                                        "is_selected_item",
+                                        "is_using_item",
+                                        "is_sleeping",
+                                        "is_sneaking",
+                                        "is_sprinting",
+                                        "is_swimming",
+                                        "item_is_charged",
+                                        "last_hit_by_player",
+                                        "cardinal_player_facing",
+                                        "cardinal_facing_2d",
+                                        "health"
+                                ]
+                        },
+                        "animations": {
+                                "death": "controller.animation.death",
+                                "can": "controller.animation.can",
+                                "is_moving": "controller.animation.player.is_moving",
+                                "is_moving2": "controller.animation.player.is_moving2",
+                                "is_alive": "controller.animation.player.is_alive",
+                                "is_eating": "controller.animation.player.is_eating",
+                                "is_breathing": "controller.animation.player.is_breathing",
+                                "is_first_person": "controller.animation.player.is_first_person",
+                                "is_gliding": "controller.animation.player.is_gliding",
+                                "is_in_water": "controller.animation.player.is_in_water",
+                                "is_invisible": "controller.animation.player.is_invisible",
+                                "is_jumping": "controller.animation.player.is_jumping",
+                                "is_on_ground": "controller.animation.player.is_on_ground",
+                                "is_on_fire": "controller.animation.player.is_on_fire",
+                                "is_riding": "controller.animation.player.is_riding",
+                                "is_selected_item": "controller.animation.player.is_selected_item",
+                                "is_using_item": "controller.animation.player.is_using_item",
+                                "is_sleeping": "controller.animation.player.is_sleeping",
+                                "is_sneaking": "controller.animation.player.is_sneaking",
+                                "is_sprinting": "controller.animation.player.is_sprinting",
+                                "is_swimming": "controller.animation.player.is_swimming",
+                                "item_is_charged": "controller.animation.player.item_is_charged",
+                                "last_hit_by_player": "controller.animation.player.last_hit_by_player",
+                                "cardinal_player_facing": "controller.animation.player.cardinal_player_facing",
+                                "cardinal_facing_2d": "controller.animation.player.cardinal_facing_2d",
+                                "health": "controller.animation.player.health"
+                        }
+                },
+                "component_groups": {
+                        "rot:dvvanish": {
+                                "minecraft:pushable": {
+                                        "is_pushable": true,
+                                        "is_pushable_by_piston": true
+                                },
+                                "minecraft:environment_sensor": {
+                                        "triggers": [
+                                                {
+                                                        "on_environment": {
+                                                                "filters": {
+                                                                        "all_of": [
+                                                                                {
+                                                                                        "test": "has_tag",
+                                                                                        "subject": "self",
+                                                                                        "value": "vanish"
+                                                                                }
+                                                                        ]
+                                                                },
+                                                                "event": "rot:vanish"
+                                                        }
+                                                },
+                                                {
+                                                        "on_environment": {
+                                                                "filters": {
+                                                                        "all_of": [
+                                                                                {
+                                                                                        "test": "has_tag",
+                                                                                        "subject": "self",
+                                                                                        "value": "unvanish"
+                                                                                }
+                                                                        ]
+                                                                },
+                                                                "event": "rot:unvanish"
+                                                        }
+                                                }
+                                        ]
+                                },
+                                "minecraft:health": {
+                                        "value": 20,
+                                        "max": 20
+                                },
+                                "minecraft:type_family": {
+                                        "family": [
+                                                "player",
+                                                "dvvanish",
+                                                "arm"
+                                        ]
+                                },
+                                "minecraft:collision_box": {
+                                        "width": 0.6,
+                                        "height": 1.8
+                                },
+                                "minecraft:physics": {
+                                        "has_gravity": true,
+                                        "has_collision": true
+                                },
+                                "minecraft:scale": {
+                                        "value": 1
+                                },
+                                "minecraft:movement": {
+                                        "value": 0.1
+                                },
+                                "minecraft:attack": {
+                                        "damage": 1
+                                }
+                        },
+                        "rot:vanish": {
+                                "minecraft:damage_sensor": {
+                                        "triggers": [
+                                                {
+                                                        "cause": "all",
+                                                        "deals_damage": false
+                                                }
+                                        ]
+                                },
+                                "minecraft:collision_box": {
+                                        "width": 0.01,
+                                        "height": 0.01
+                                },
+                                "minecraft:scale": {
+                                        "value": 0.01
+                                },
+                                "minecraft:physics": {
+                                        "has_gravity": true,
+                                        "has_collision": false
+                                },
+                                "minecraft:type_family": {
+                                        "family": [
+                                                "vanish"
+                                        ]
+                                },
+                                "minecraft:spell_effects": {
+                                        "add_effects": [
+                                                {
+                                                        "effect": "invisibility",
+                                                        "amplifier": 2,
+                                                        "visible": false,
+                                                        "ambient": false,
+                                                        "duration": 1
+                                                },
+                                                {
+                                                        "effect": "night_vision",
+                                                        "amplifier": 2,
+                                                        "visible": false,
+                                                        "ambient": false,
+                                                        "duration": 1
+                                                }
+                                        ]
+                                }
+                        }
+                },
+                "components": {
+                        "minecraft:damage_sensor": {
+                                "triggers": [
+                                        {
+                                                "on_damage": {
+                                                        "filters": [
+                                                                {
+                                                                        "test": "has_tag",
+                                                                        "operator": "==",
+                                                                        "subject": "self",
+                                                                        "value": "godmode"
+                                                                }
+                                                        ],
+                                                        "cause": "all"
+                                                },
+                                                "deals_damage": false
+                                        },
+                                        {
+                                                "on_damage": {
+                                                        "filters": {
+                                                                "all_of": [
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "value": "attack"
+                                                                        },
+                                                                        {
+                                                                                "test": "is_family",
+                                                                                "operator": "==",
+                                                                                "subject": "other",
+                                                                                "value": "player"
+                                                                        },
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "subject": "self",
+                                                                                "value": "fatal"
+                                                                        }
+                                                                ]
+                                                        },
+                                                        "event": "rot:on_death_by_player"
+                                                }
+                                        },
+                                        {
+                                                "on_damage": {
+                                                        "filters": {
+                                                                "all_of": [
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "value": "projectile"
+                                                                        },
+                                                                        {
+                                                                                "test": "is_family",
+                                                                                "operator": "==",
+                                                                                "subject": "other",
+                                                                                "value": "player"
+                                                                        },
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "subject": "self",
+                                                                                "value": "fatal"
+                                                                        }
+                                                                ]
+                                                        },
+                                                        "event": "rot:on_death_by_player"
+                                                }
+                                        },
+                                        {
+                                                "on_damage": {
+                                                        "filters": {
+                                                                "all_of": [
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "value": "magic"
+                                                                        },
+                                                                        {
+                                                                                "test": "is_family",
+                                                                                "operator": "==",
+                                                                                "subject": "other",
+                                                                                "value": "player"
+                                                                        },
+                                                                        {
+                                                                                "test": "has_damage",
+                                                                                "operator": "==",
+                                                                                "subject": "self",
+                                                                                "value": "fatal"
+                                                                        }
+                                                                ]
+                                                        },
+                                                        "event": "rot:on_death_by_player"
+                                                }
+                                        },
+                                        {
+                                                "on_damage": {
+                                                        "filters": {
+                                                                "any_of": [
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt1"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt1"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt2"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt2"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt3"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt3"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt4"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt4"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt5"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt5"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt6"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt6"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt7"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt7"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt8"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt8"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt9"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt9"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt10"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt10"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt11"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt11"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt12"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt12"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt13"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt13"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt14"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt14"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt15"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt15"
+                                                                                        }
+                                                                                ]
+                                                                        },
+                                                                        {
+                                                                                "all_of": [
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "self",
+                                                                                                "value": "clt16"
+                                                                                        },
+                                                                                        {
+                                                                                                "test": "has_tag",
+                                                                                                "subject": "other",
+                                                                                                "value": "clt16"
+                                                                                        }
+                                                                                ]
+                                                                        }
+                                                                ]
+                                                        }
+                                                },
+                                                "deals_damage": false
+                                        }
+                                ]
+                        },
+                        "minecraft:type_family": {
+                                "family": [
+                                        "player",
+                                        "arm"
+                                ]
+                        },
+                        "minecraft:loot": {
+                                "table": "loot_tables/empty.json"
+                        },
+                        "minecraft:collision_box": {
+                                "width": 0.6,
+                                "height": 1.8
+                        },
+                        "minecraft:can_climb": {},
+                        "minecraft:movement": {
+                                "value": 0.1
+                        },
+                        "minecraft:scale": {
+                                "value": 1
+                        },
+                        "minecraft:player.saturation": {
+                                "value": 20
+                        },
+                        "minecraft:player.exhaustion": {
+                                "value": 0,
+                                "max": 4
+                        },
+                        "minecraft:player.level": {
+                                "value": 0,
+                                "max": 24791
+                        },
+                        "minecraft:player.experience": {
+                                "value": 0,
+                                "max": 1
+                        },
+                        "minecraft:breathable": {
+                                "totalSupply": 15,
+                                "suffocateTime": -1,
+                                "inhaleTime": 3.75,
+                                "generatesBubbles": false
+                        },
+                        "minecraft:nameable": {
+                                "alwaysShow": true,
+                                "allowNameTagRenaming": false
+                        },
+                        "minecraft:physics": {
+                                "has_gravity": true,
+                                "has_collision": true
+                        },
+                        "minecraft:insomnia": {
+                                "days_until_insomnia": 3
+                        },
+                        "minecraft:scaffolding_climber": {}
+                },
+                "events": {
+                        "rot:reset_kills": {
+                                "run_command": {
+                                        "target": "self",
+                                        "command": [
+                                                "scoreboard players add @s cld 1",
+                                                "scoreboard players reset @s killstreak"
+                                        ]
+                                }
+                        },
+                        "rot:on_death_by_player": {
+                                "run_command": {
+                                        "target": "other",
+                                        "command": [
+                                                "scoreboard players add @s kills 1",
+                                                "scoreboard players add @s killstreak 1"
+                                        ]
+                                }
+                        },
+                        "minecraft:gain_bad_omen": {
+                                "add": {
+                                        "component_groups": [
+                                                "minecraft:add_bad_omen"
+                                        ]
+                                }
+                        },
+                        "minecraft:clear_add_bad_omen": {
+                                "remove": {
+                                        "component_groups": [
+                                                "minecraft:add_bad_omen"
+                                        ]
+                                },
+                                "add": {
+                                        "component_groups": [
+                                                "minecraft:clear_bad_omen_spell_effect"
+                                        ]
+                                }
+                        },
+                        "minecraft:remove_raid_trigger": {
+                                "remove": {
+                                        "component_groups": [
+                                                "minecraft:raid_trigger"
+                                        ]
+                                }
+                        },
+                        "rot:vanish": {
+                                "add": {
+                                        "component_groups": [
+                                                "rot:vanish"
+                                        ]
+                                },
+                                "remove": {
+                                        "component_groups": [
+                                                "rot:dvvanish"
+                                        ]
+                                }
+                        },
+                        "rot:unvanish": {
+                                "remove": {
+                                        "component_groups": [
+                                                "rot:vanish"
+                                        ]
+                                },
+                                "add": {
+                                        "component_groups": [
+                                                "rot:dvvanish"
+                                        ]
+                                }
+                        },
+                        "rot:runvanish": {
+                                "add": {
+                                        "component_groups": [
+                                                "rot:dvvanish"
+                                        ]
+                                }
+                        }
+                },
+                "minecraft:entity_spawned": {
+                        "add": {
+                                "component_groups": [
+                                        "rot:dvvanish"
+                                ]
+                        }
+                }
+        }
+}
