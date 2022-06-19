@@ -59,6 +59,7 @@ world.events.entityCreate.subscribe(({ entity }) => {
     entity.triggerEvent('minecraft:horse_saddled');
     entity.triggerEvent('minecraft:make_black');
 });
+
 /*
  * Welcome to the Main page!
  * Main Developer: Mo9ses
